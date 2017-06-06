@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Git</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { 
+        font-family: 'Droid Serif'; 
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+
+      }
+      .white {color: white;}
+      .bg-black {background-color: #272822;}
+      .remark-code, .remark-inline-code { font-family: 'Monaco'; }
+
+       /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child,.left-column h4:last-child {
+        color: #000;
+        color: #bf1e2e;
+      }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+
+      .red { color: #fa0000; }
+      .dark-red {
+        color: #bf1e2e;
+      }
+
+      
+      strong, b {color: #379fb2;}
+      
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+      layout: true
+      background-image: url(bg1.png)
+      background-position: left bottom
+
+      ---
+      class: center, middle
+
+      # Git
+ 
+      Daniel Varela
+
+      [dan@nearsoft.com](http://nearsoft.com)
+
+      ---
+      
+      .left-column[
+      # Agenda
+      ]
+      .right-column[
+      ### 1. ¿Qué es git?
+      ### 2. ¿Por qué debería usarlo?
+      ### 3. Principales características
+      ### 5. Comandos
+      ### 6. Repos remotos
+      ]
+
+      ---
+      .left-column[
+      ### ¿Qué es git?
+      ]
+      .right-column[
+      **Git** permite a a los equipos trabajar usando el **mismo conjunto de archivos**. También ayuda al equipo a enfrenetar la confusión 
+      que se genera cuando multiples personas estan editando el mismo archivo.
+
+      - Software para control de versiones
+
+      - Historia de mí código
+
+      - Mí código esta seguro (lost code)
+
+      - Arquitectura distribuída 
+
+      - ¡Rápido!
+
+      - Cada desarrollador tiene su propia copia del código
+
+      - Linus Torvalds (2005)
+      ]
+     
+      ---
+      .left-column[
+      ### ¿Qué es git?
+      ### ¿Por qué usarlo?
+      ]
+      .right-column[
+      - Código **roto** o **deficiente**
+
+      - Código **perdido**
+
+      - **Diferentes** versiones en tu producto
+
+      - **Multiples personas** trabajando sobre la misma caracteristica de producto
+
+      ]
+      ---
+      .left-column[
+      ### ¿Qué es git?
+      ### ¿Por qué usarlo?
+      ### Características
+      ]
+      .right-column[
+
+      - Cada vez que que realizas un  **`'commit'`** o guardas el esado de tu proyecto, git toma una foto de tus archivos en ese momento y guarda una referencia a ese punto de la historia en tu proyecto.
+
+
+      - No almacena **duplicados** solo **referencias**  🤓
+
+      - Git fue pensado como una **cadena de fotos (deltas)** de los archivos
+
+      - Git no necesita ir a un **servidor externo** para obtener el historial
+
+      ]
+
+      ---
+      .left-column[
+      ### ¿Qué es git?
+      ### ¿Por qué usarlo?
+      ### Características
+      ### Comandos 
+      ]
+      .right-column[
+      #### `git init`
+      #### `git clone <repo>`
+      #### `git status`
+      #### `git add <dir>`
+      #### `git commit`
+      #### `git branch`
+      #### `git checkout <branch>`
+      ]
+
+      ---
+      .left-column[
+      ### Comandos
+      #### `git init`
+      ]
+      .right-column[
+        Inicializa tu directorio actual para el control de versiones con git
+
+        .dark-red[`ejemplo:`]
+
+        ```shell
+        $ git init
+        ```
+
+        Creará una carpeta llamada **`.git/`** en el directorio actual que contiene las información necesaria para el control de versiones
+
+
+      ]
+
+      ---
+      .left-column[
+      ### Comandos
+      #### `git init`
+      #### `git clone`
+      ]
+      .right-column[
+        En caso de que tu repositorio (proyecto) ya exista, puedes copiarlo (clonarlo) con el comando `git clone`
+
+        .dark-red[`ejemplo:`]
+
+        ```shell
+        $ git clone project-dir/
+        ``` 
+
+        **`project-dir/`** puede ser un repositorio local o remoto.red[*]
+
+      ]
+
+      ---
+      .left-column[
+      ### Comandos
+      #### `git init`
+      #### `git clone`
+      #### `git status`
+      ]
+      .right-column[
+      Muesrta el estatus de mi repositorio:
+        - Archivos modificados
+
+        - Archivos nuevos
+
+        - Achivos fuera del controll de versiones ('untracked files')
+
+        - Branch actual
+
+      .dark-red[`ejemplo:`]
+      ```shell
+      $ git status
+      ```
+
+      ```shell
+      On branch master
+
+      Initial commit
+
+      Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+
+        bg1.png
+        index.html
+      ```
+
+      ]
+
+      ---
+      .left-column[
+      ### Comandos
+      #### `git init`
+      #### `git clone`
+      #### `git status`
+       #### `git add`
+      ]
+      .right-column[
+        Agrega archivos nuevos y modificados a el area de staging del repositorio
+        
+        Acepta como parametro archivos o directorios que se desean agregar
+
+
+        .dark-red[`ejemplo:`]
+
+        agrega el archivo **`app.rb`** a la zona de `staging`
+        ```shell 
+        $ git add ruby-school/app.rb 
+        ```
+
+        agrega los archivos del **`directorio actual`** a la zona de `staging`
+        ```shell
+        $ git add .
+        ``` 
+
+        ]
+
+      ---
+      .left-column[
+      ### Comandos
+      #### `git init`
+      #### `git clone`
+      #### `git status`
+      #### `git add`
+      #### `git commit`
+      ]
+      .right-column[
+        Registra los cambios en la zona de .dark-red[`'staging'`] al repositorio y los hace **`rastreables`**, **`recuperables`** y **`revisables`**
+
+        .dark-red[`ejemplo:`]
+
+        ```shell
+        $ git commit -m 'mensaje corto y descriptivo'
+        ```
+        
+        
+        despues, revisa los cambios en el log del repo
+        ```shell
+        $ git log
+        ```
+      ]
+
+      ---
+      .left-column[
+      ### Comandos
+      #### `git init`
+      #### `git clone`
+      #### `git status`
+      #### `git add`
+      #### `git commit`
+      #### `git branch`
+      ]
+      .right-column[
+      
+      ]
+      
+
+      ---
+      .left-column[
+      ### Comandos
+      #### `git init`
+      #### `git clone`
+      #### `git status`
+      #### `git add`
+      #### `git commit`
+      #### `git branch`
+      #### `git checkout`
+      ]
+      .right-column[
+      
+      ]
+
+
+      
+      ---
+      .left-column[
+      ### ¿Qué es git?
+      ### ¿Por qué usarlo?
+      ### Características
+      ### Comandos 
+      ### Repos remotos
+      ]
+      .right-column[
+      #### `git push`
+      #### `git pull`
+      ]
+
+
+      ---
+      class: center, middle
+      # ¿Preguntas?
+      
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
