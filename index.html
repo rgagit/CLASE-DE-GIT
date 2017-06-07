@@ -80,20 +80,21 @@
       ### ¿Qué es git?
       ]
       .right-column[
-      **Git** permite a a los equipos trabajar usando el **mismo conjunto de archivos**. También ayuda al equipo a enfrenetar la confusión 
-      que se genera cuando multiples personas estan editando el mismo archivo.
+      ### ¿Qué es git?
+      **Git** permite a los equipos trabajar usando el **mismo conjunto de archivos**. También ayuda al equipo a enfrentar la confusión 
+      que se genera cuando distintas personas estan editando el mismo archivo de manera colaborativa.
 
       - Software para control de versiones
 
-      - Historia de mí código
+      - Historia de mi código
 
-      - Mí código esta seguro (lost code)
+      - Mi código está seguro (lost code)
 
       - Arquitectura distribuída 
 
       - ¡Rápido!
 
-      - Cada desarrollador tiene su propia copia del código
+      - Cada desarrollador tiene su propia copia del código (repositorio)
 
       - Linus Torvalds (2005)
       ]
@@ -104,13 +105,14 @@
       ### ¿Por qué usarlo?
       ]
       .right-column[
+      ### ¿Por qué usarlo?
       - Código **roto** o **deficiente**
 
       - Código **perdido**
 
       - **Diferentes** versiones en tu producto
 
-      - **Multiples personas** trabajando sobre la misma caracteristica de producto
+      - **Distintas personas** trabajando sobre la misma característica de producto
 
       ]
       ---
@@ -120,8 +122,8 @@
       ### Características
       ]
       .right-column[
-
-      - Cada vez que que realizas un  **`'commit'`** o guardas el esado de tu proyecto, git toma una foto de tus archivos en ese momento y guarda una referencia a ese punto de la historia en tu proyecto.
+      ### Características
+      - Cada vez que que realizas un **`'commit'`** o guardas el estado de tu proyecto, git toma una foto de tus archivos en ese momento y guarda una referencia a ese punto de la historia en tu repositorio.
 
 
       - No almacena **duplicados** solo **referencias**  🤓
@@ -140,6 +142,7 @@
       ### Comandos 
       ]
       .right-column[
+      ### Comandos 
       #### `git init`
       #### `git clone <repo>`
       #### `git status`
@@ -155,6 +158,7 @@
       #### `git init`
       ]
       .right-column[
+        #### `git init`
         Inicializa tu directorio actual para el control de versiones con git
 
         .dark-red[`ejemplo:`]
@@ -175,6 +179,7 @@
       #### `git clone`
       ]
       .right-column[
+        #### `git clone`
         En caso de que tu repositorio (proyecto) ya exista, puedes copiarlo (clonarlo) con el comando `git clone`
 
         .dark-red[`ejemplo:`]
@@ -195,14 +200,12 @@
       #### `git status`
       ]
       .right-column[
-      Muesrta el estatus de mi repositorio:
-        - Archivos modificados
-
-        - Archivos nuevos
-
-        - Achivos fuera del controll de versiones ('untracked files')
-
-        - Branch actual
+        #### `git status`
+        Muestra el estado de mi repositorio:
+          - Archivos modificados
+          - Archivos nuevos
+          - Achivos sin seguimiento ('untracked files')
+          - Branch actual
 
       .dark-red[`ejemplo:`]
       ```shell
@@ -232,9 +235,10 @@
        #### `git add`
       ]
       .right-column[
-        Agrega archivos nuevos y modificados a el area de staging del repositorio
+        #### `git add`
+        Agrega archivos nuevos y modificados a la zona de `staging` del repositorio
         
-        Acepta como parametro archivos o directorios que se desean agregar
+        Acepta como parámetros: archivos o directorios que se desean agregar
 
 
         .dark-red[`ejemplo:`]
@@ -261,6 +265,7 @@
       #### `git commit`
       ]
       .right-column[
+        #### `git commit`
         Registra los cambios en la zona de .dark-red[`'staging'`] al repositorio y los hace **`rastreables`**, **`recuperables`** y **`revisables`**
 
         .dark-red[`ejemplo:`]
@@ -274,6 +279,14 @@
         ```shell
         $ git log
         ```
+        
+        ```shell
+        commit 10aa66125f1539f78245d657174efda4efe3dc99
+        Author: dvarela <dan@nearsoft.com>
+        Date:   Tue Jun 1 16:24:45 2017 -0600
+
+            mensaje corto y descriptivo
+        ```
       ]
 
       ---
@@ -286,12 +299,30 @@
       #### `git commit`
       #### `git branch`
       ]
+
       .right-column[
-      
+        #### `git branch`
+        Un .dark-red[`branch`] es un apuntador ("copia") a un punto en la historia de otro branch (rama base `master`).
+        Representa una división del código base y permite realizar cambios sin afectar los cambios originales 
+
+        Es útil para mantener multiples versiones del mismo proyecto (`v1.0`, `v1.5`)
+
+        .dark-red[`ejemplo:`]
+        
+        lista todos los branches de este repositorio
+        ```shell
+        $ git branch  
+        ```
+        crea un nuevo branch
+        ```shell
+        $ git branch v1.5.0
+        ```       
+
       ]
       
 
       ---
+
       .left-column[
       ### Comandos
       #### `git init`
@@ -302,10 +333,21 @@
       #### `git branch`
       #### `git checkout`
       ]
-      .right-column[
       
-      ]
+      .right-column[
+      #### `git checkout`
+      Una vez creados los branches, **`git checkout`** permite moverme entre estos. 
+      
+      .dark-red[`ejemplo:`]
 
+      ```shell
+      $ git checkout v1.5 
+      ```
+
+      ```shell
+      Switched to branch 'v1.5'
+      ```
+      ]
 
       
       ---
@@ -317,10 +359,68 @@
       ### Repos remotos
       ]
       .right-column[
+        ### Repos remotos
+        La intención principal de **.dark-red[`git`]** es ayudar a trabajar en equipos colaborativos, entonces necesitamos un repositorio remoto 
+        central donde podemos **`empujar`** muestros cambios y **`jalar`** cambios de otras personas
+
+        .dark-red[`comandos:`]
+        
+        - #### `git push`
+        - #### `git pull`
+      ]
+
+
+      ---
+
+      .left-column[
+      ### Comandos
+      #### `git push`
+      ]
+      .right-column[
+        #### `git push`
+        Permite **`empujar`** [**.dark-red[`push`]**] tu proyecto o las actualizaciones de código a un repositorio remoto.
+        
+        .dark-red[`ejemplo:`]
+
+        ```shell
+        $ git push -u origin <brnach-name>
+        ```
+
+        solo necesitamos poner 
+        
+        ```shell
+        -u origin <branch-name>
+        ``` 
+
+        si en el repositorio remoto no existe ese branch. De otra forma 
+        ```shell
+        $ git push
+        ```
+
+         será suficiente.
+      
+      ]
+      
+      ---
+
+      .left-column[
+      ### Comandos
       #### `git push`
       #### `git pull`
       ]
+      .right-column[
+        #### `git pull`
+        Permite **`jalar`** [**.dark-red[`pull`]**] los cambios que existen en el repositorio remoto y que no existen en tu repo local 
 
+        
+        .dark-red[`ejemplo:`]
+        
+        descarga las actualizaciones del repositorio remoto y las mezcla con el repositorio actual
+        ```shell
+        $ git pull  
+        ```
+      
+      ]
 
       ---
       class: center, middle
